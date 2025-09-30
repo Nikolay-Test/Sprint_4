@@ -34,7 +34,8 @@
 - **test_get_books_with_specific_genre_empty_collector** - поиск в пустой коллекции
 
 ### 5. Тесты для метода `get_books_genre`
-- **test_get_books_genre_returns_original_dict** - проверка возврата оригинального словаря
+- **test_get_books_genre_returns_current_state** - проверка возврата текущего состояния словаря книг
+- **test_get_books_genre_empty_collection** - проверка возврата пустого словаря для пустой коллекции
 
 ### 6. Тесты для метода `get_books_for_children`
 - **test_get_books_for_children_excludes_age_rated_genres** - проверка исключения книг с возрастным рейтингом
@@ -51,8 +52,8 @@
 - **test_delete_book_from_favorites_nonexistent_book** - удаление несуществующей книги из избранного
 
 ### 9. Тесты для метода `get_list_of_favorites_books`
-- **test_get_list_of_favorites_books_returns_original_list** - проверка возврата оригинального списка
-- **test_get_list_of_favorites_books_empty** - проверка пустого списка избранного
+- **test_get_list_of_favorites_books_returns_current_state** - проверка возврата текущего состояния списка избранного
+- **test_get_list_of_favorites_books_empty** - проверка возврата пустого списка избранного
 
 ## Фикстуры
 

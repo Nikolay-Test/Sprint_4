@@ -9,9 +9,8 @@ def collector():
 
 
 @pytest.fixture
-def collector_with_books():
+def collector_with_books(collector):
     # BooksCollector с предварительно добавленными книгами
-    collector = BooksCollector()
     books = [
         ('Книга 1', 'Фантастика'),
         ('Книга 2', 'Ужасы'),
@@ -28,9 +27,8 @@ def collector_with_books():
 
 
 @pytest.fixture
-def collector_with_favorites():
+def collector_with_favorites(collector):
     # BooksCollector с книгами в избранном
-    collector = BooksCollector()
     books = ['Книга 1', 'Книга 2', 'Книга 3']
     for book in books:
         collector.add_new_book(book)

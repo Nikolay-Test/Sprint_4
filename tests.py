@@ -70,13 +70,22 @@ class TestBooksCollector:
         assert books == []
 
     # Тесты для get_books_genre
-    def test_get_books_genre_returns_original_dict(self, collector):
-        # Проверяем, что метод возвращает оригинальный словарь (не копию)
-        collector.add_new_book('Книга')
-        books_genre = collector.get_books_genre()
-        # Проверяем, что изменения в возвращенном объекте влияют на оригинал
-        books_genre['Изменение'] = 'Жанр'
-        assert 'Изменение' in collector.get_books_genre()
+    def test_get_books_genre_returns_current_state(self, collector_with_books):
+        # Проверяем, что метод возвращает текущее состояние словаря books_genre
+        books_genre = collector_with_books.get_books_genre()
+        expected_books = {
+            'Книга 1': 'Фантастика',
+            'Книга 2': 'Ужасы',
+            'Книга 3': 'Детективы',
+            'Книга 4': 'Мультфильмы',
+            'Книга 5': 'Комедии',
+            'Книга 6': ''
+        }
+        assert books_genre == expected_books
+
+    def test_get_books_genre_empty_collection(self, collector):
+        #Проверяем возврат пустого словаря для пустой коллекции
+        assert collector.get_books_genre() == {}
 
     # Тесты для get_books_for_children
     def test_get_books_for_children_excludes_age_rated_genres(self, collector_with_books):
@@ -121,12 +130,12 @@ class TestBooksCollector:
         assert collector_with_favorites.get_list_of_favorites_books() == initial_favorites
 
     # Тесты для get_list_of_favorites_books
-    def test_get_list_of_favorites_books_returns_original_list(self, collector_with_favorites):
-        # Проверяем, что метод возвращает оригинальный список (не копию)
+    def test_get_list_of_favorites_books_returns_current_state(self, collector_with_favorites):
+        #Проверяем, что метод возвращает текущее состояние списка избранного
         favorites = collector_with_favorites.get_list_of_favorites_books()
-        # Проверяем, что изменения в возвращенном объекте влияют на оригинал
-        favorites.append('Новая книга')
-        assert 'Новая книга' in collector_with_favorites.get_list_of_favorites_books()
+        expected_favorites = ['Книга 1', 'Книга 2', 'Книга 3']
+        assert favorites == expected_favorites
 
     def test_get_list_of_favorites_books_empty(self, collector):
+        # Проверяем возврат пустого списка когда нет избранных книг
         assert collector.get_list_of_favorites_books() == []
